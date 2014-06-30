@@ -145,9 +145,10 @@ class Taxonomy {
 
 	public function getTermsRelation($vid, $object_id, $object_type) {
 
-		return TermRelation::where('vocabulary_id', $vid)
+		return TermRelation::where('term_relations.vocabulary_id', $vid)
 									->where('object_id', $object_id)
 									->where('object_type', $object_type)
+									->join('terms', 'term_relations.term_id', '=', 'terms.id')
 									->get();
 	}
 
