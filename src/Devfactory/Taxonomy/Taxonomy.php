@@ -160,6 +160,12 @@ class Taxonomy {
 									->delete();
 	}
 
+	public function deleteObjectTags($object_id, $object_type){
+		TermRelation::where('object_id', '=', $object_id)
+								->where('object_type', '=', $object_type)
+								->delete();
+	}	
+
 	public function removeVocabulary($vid) {
 		$voc = Vocabulary::find($vid);
 		if($voc != null) {
@@ -168,7 +174,6 @@ class Taxonomy {
 			$voc->delete();
 
 		}
-
 	}
 
 	public function updateTerm($id, $value) {
